@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varun Warude Portfolio</title>
+<meta name="description" content="Portfolio of Varun Warude, Computer Engineering graduate in Pune working with Python, SQL, machine learning and FastAPI.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root { color-scheme: light; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+/* Layout: a datasheet. Mono labels in a narrow left column, content on the right; projects read as spec rows with a result column. */
+:root {
+  --bg: #F1F4F2;
+  --panel: #E5ECE8;
+  --ink: #14211C;
+  --muted: #55655E;
+  --line: #C6D2CC;
+  --accent: #0A7C59;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #D3EAE0;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1411;
+    --panel: #151F1B;
+    --ink: #E4EEE9;
+    --muted: #93A59C;
+    --line: #27362F;
+    --accent: #4ED3A3;
+    --accent-ink: #06241A;
+    --accent-soft: #163A2E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1411;
+  --panel: #151F1B;
+  --ink: #E4EEE9;
+  --muted: #93A59C;
+  --line: #27362F;
+  --accent: #4ED3A3;
+  --accent-ink: #06241A;
+  --accent-soft: #163A2E;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-inline: 1.25rem;
+  padding-block: 0 4rem;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 68rem; margin-inline: auto; }
+
+.mono { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* top bar */
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 2rem; padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
+.top nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+.top nav a { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--muted); padding-block: 0.25rem; }
+.top nav a:hover { color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2.5rem 3.5rem; padding-block: 4rem 4.5rem; align-items: start; }
+.hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.8rem, 8vw, 5.6rem); line-height: 0.95; letter-spacing: -0.03em; margin: 0.75rem 0 1.5rem; text-wrap: balance; }
+.hero .lead { font-size: 1.2rem; max-width: 34rem; margin: 0 0 2rem; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.btn { display: inline-block; font-weight: 600; font-size: 0.95rem; text-decoration: none; padding: 0.7rem 1.2rem; border: 1px solid var(--ink); border-radius: 3px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+.spec { border-top: 2px solid var(--ink); margin: 0; }
+.spec div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.8rem; border-bottom: 1px solid var(--line); }
+.spec dt { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 0.2rem; }
+.spec dd { margin: 0; font-size: 0.95rem; }
+
+/* sections */
+.sec { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem 3rem; padding-block: 3.5rem; border-top: 1px solid var(--line); }
+.sec > header h2 { font-family: var(--font-display); font-weight: 650; font-size: 1.9rem; line-height: 1.1; letter-spacing: -0.02em; margin: 0.4rem 0 0; text-wrap: balance; }
+.sec > div { min-width: 0; }
+
+.about p { margin: 0 0 1rem; max-width: 40rem; font-size: 1.08rem; text-wrap: pretty; }
+
+/* filter */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+.chip { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.05em; text-transform: uppercase; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 0.4rem 0.9rem; cursor: pointer; }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* project rows */
+.projects { border-top: 2px solid var(--ink); }
+.proj { display: grid; grid-template-columns: minmax(0, 1fr) 12rem; gap: 1rem 2rem; padding-block: 1.75rem; border-bottom: 1px solid var(--line); }
+.proj h3 { font-family: var(--font-display); font-weight: 650; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 0.5rem; text-wrap: balance; }
+.proj p { margin: 0 0 0.9rem; max-width: 38rem; color: var(--ink); text-wrap: pretty; }
+.stack { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; padding: 0; margin: 0 0 0.9rem; }
+.stack li { font-family: var(--font-mono); font-size: 0.74rem; background: var(--panel); border-radius: 2px; padding: 0.15rem 0.5rem; }
+.proj .more { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--accent); text-underline-offset: 3px; }
+.result { border-left: 3px solid var(--accent); padding-left: 1rem; align-self: start; }
+.result .figure { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; line-height: 1.05; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin-block: 0.35rem 0.25rem; }
+.result .note { font-size: 0.88rem; color: var(--muted); }
+.status { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; background: var(--accent-soft); color: var(--accent); padding: 0.1rem 0.45rem; border-radius: 2px; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; margin: 0; border-top: 2px solid var(--ink); }
+.skills div { padding-block: 0.9rem; border-bottom: 1px solid var(--line); }
+.skills dt { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+.skills dd { margin: 0; }
+
+/* background */
+.rows { border-top: 2px solid var(--ink); margin: 0 0 2.25rem; padding: 0; list-style: none; }
+.rows li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 1.5rem; padding-block: 0.95rem; border-bottom: 1px solid var(--line); }
+.rows .what { font-weight: 600; }
+.rows .where { color: var(--muted); font-size: 0.95rem; grid-column: 1; }
+.rows time { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); text-align: right; grid-column: 2; grid-row: 1; padding-top: 0.2rem; }
+.sub { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.75rem; font-weight: 500; }
+
+/* contact */
+.contact-list { border-top: 2px solid var(--ink); margin: 0; }
+.contact-list div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding-block: 0.8rem; border-bottom: 1px solid var(--line); }
+.contact-list dt { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.contact-list dd { margin: 0; overflow-wrap: anywhere; user-select: all; }
+.contact-list a { text-underline-offset: 3px; }
+.copy { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 3px; padding: 0.3rem 0.7rem; cursor: pointer; min-width: 4.6rem; }
+.copy:hover { border-color: var(--ink); }
+
+footer { border-top: 1px solid var(--line); padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .chip, .copy, .top nav a { transition: background-color 0.15s, color 0.15s, border-color 0.15s; }
+}
+
+@media (max-width: 52rem) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 2.5rem 3rem; }
+  .sec { grid-template-columns: minmax(0, 1fr); padding-block: 2.5rem; }
+  .proj { grid-template-columns: minmax(0, 1fr); }
+  .result { border-left: 0; border-top: 3px solid var(--accent); padding: 0.75rem 0 0; }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 30rem) {
+  .contact-list div { grid-template-columns: minmax(0, 1fr) auto; }
+  .contact-list dt { grid-column: 1 / -1; }
+  .spec div { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="mono">Varun Warude / Pune, India</span>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" aria-labelledby="name">
+    <div>
+      <span class="mono">Computer Engineering, class of 2026</span>
+      <h1 id="name">Varun Warude</h1>
+      <p class="lead">I build Python applications that work with data: pipelines, dashboards and models that end up inside a running app.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="https://github.com/varunwarude" target="_blank" rel="noopener">GitHub profile</a>
+      </div>
+    </div>
+    <dl class="spec" aria-label="At a glance">
+      <div><dt>Based in</dt><dd>Pune, Maharashtra</dd></div>
+      <div><dt>Studying</dt><dd>B.E. Computer Engineering, GSMCOE, 2021 to 2026</dd></div>
+      <div><dt>Looking for</dt><dd>Data Analyst and Software Engineer Trainee roles</dd></div>
+      <div><dt>Main tools</dt><dd>Python, SQL, Pandas, Scikit-learn, FastAPI, Streamlit</dd></div>
+      <div><dt>Building next</dt><dd>A RAG chatbot that answers questions from documents</dd></div>
+    </dl>
+  </section>
+
+  <section class="sec about" id="about" aria-labelledby="about-h">
+    <header><span class="mono">About</span><h2 id="about-h">Data work, shipped as software</h2></header>
+    <div>
+      <p>I am a Computer Engineering student with hands-on experience in Python, SQL, Pandas, NumPy and data processing, gained through academic and personal projects.</p>
+      <p>I like the full path of a data problem: pulling the data in, cleaning and transforming it, analysing it, and wrapping the result in an app someone can open and use. My projects cover REST APIs, ETL pipelines, machine learning models and dashboards.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="projects" aria-labelledby="projects-h">
+    <header><span class="mono">Selected work</span><h2 id="projects-h">Projects</h2></header>
+    <div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="data" aria-pressed="false">Data</button>
+        <button class="chip" type="button" data-filter="ml" aria-pressed="false">Machine learning</button>
+        <button class="chip" type="button" data-filter="full-stack" aria-pressed="false">Full stack</button>
+      </div>
+
+      <div class="projects">
+        <article class="proj" data-tags="full-stack ml">
+          <div>
+            <h3>FlightBook: flight booking with ML price prediction</h3>
+            <p>A full-stack booking system with FastAPI REST APIs, JWT authentication, flight search, seat selection, booking, cancellation and booking history. A Random Forest model predicts fares from route and departure-time features. Deployed on Render (backend) and Vercel (frontend).</p>
+            <ul class="stack"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>SQLite</li><li>Scikit-learn</li><li>JWT</li><li>JavaScript</li></ul>
+            <a class="more" href="https://github.com/varunwarude/flightbook" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+          <div class="result">
+            <span class="mono">Price model</span>
+            <span class="figure">R² 0.93</span>
+            <span class="note">Mean absolute error of about ₹288</span>
+          </div>
+        </article>
+
+        <article class="proj" data-tags="data ml">
+          <div>
+            <h3>Stock Market Analysis and AI Price Prediction</h3>
+            <p>Computes RSI and MACD indicators from price history, then trains Linear Regression and Random Forest models to predict prices. Results are explored in an interactive Streamlit and Plotly dashboard.</p>
+            <ul class="stack"><li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>Streamlit</li><li>Plotly</li></ul>
+            <a class="more" href="https://github.com/varunwarude/stock_market_analysis" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+          <div class="result">
+            <span class="mono">Models compared</span>
+            <span class="figure">2</span>
+            <span class="note">Linear Regression and Random Forest, on RSI and MACD features</span>
+          </div>
+        </article>
+
+        <article class="proj" data-tags="data">
+          <div>
+            <h3>Weather Data Analysis Dashboard</h3>
+            <p>An ETL pipeline that pulls readings from the Open-Meteo API on a schedule, stores them in SQLite and organises them into bronze and silver layers, with scikit-learn analysis on top.</p>
+            <ul class="stack"><li>Python</li><li>Open-Meteo API</li><li>SQLite</li><li>APScheduler</li><li>Scikit-learn</li></ul>
+            <a class="more" href="https://github.com/varunwarude/weather_data_analysis" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+          <div class="result">
+            <span class="mono">Pipeline design</span>
+            <span class="figure">Bronze + silver</span>
+            <span class="note">Raw data kept separate from cleaned data, refreshed by a scheduler</span>
+          </div>
+        </article>
+
+        <article class="proj" data-tags="data ml">
+          <div>
+            <h3>AI Job Matching System</h3>
+            <p>Parses resumes, extracts and normalises skills, and matches candidates to job roles on skills, education, experience and role requirements. Reusable Python modules handle resume analysis, matching and job recommendations, served through an interactive Streamlit app.</p>
+            <ul class="stack"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>NLP</li><li>Streamlit</li></ul>
+          </div>
+          <div class="result">
+            <span class="mono">Delivered as</span>
+            <span class="figure">Live app</span>
+            <span class="note">Resume analysis and job recommendations in Streamlit</span>
+          </div>
+        </article>
+
+        <article class="proj" data-tags="ml">
+          <div>
+            <h3>Privacy-Aware Multimodal Mental Health AI Companion</h3>
+            <p>Final-year team project at GSMCOE, guided by Prof. Sangeetha Navale. It combines AI-based personalisation with pose correction in one multimodal system covering depression and anxiety detection, progress tracking and recommendations. I reviewed the literature, evaluated Vision Transformers and MediaPipe, and helped produce the system architecture and UML diagrams.</p>
+            <ul class="stack"><li>Multimodal AI</li><li>MediaPipe</li><li>Vision Transformers</li><li>UML</li></ul>
+          </div>
+          <div class="result">
+            <span class="mono">Status</span>
+            <span class="figure"><span class="status">In progress</span></span>
+            <span class="note">Design complete, dataset collection is the next phase</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="skills" aria-labelledby="skills-h">
+    <header><span class="mono">Toolkit</span><h2 id="skills-h">Skills</h2></header>
+    <div>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Python, SQL, MySQL</dd></div>
+        <div><dt>Core concepts</dt><dd>OOP, Data Structures and Algorithms, SDLC</dd></div>
+        <div><dt>Data and analytics</dt><dd>Pandas, NumPy, data cleaning, EDA, data visualisation</dd></div>
+        <div><dt>AI and ML</dt><dd>Machine learning, Scikit-learn, NLP, Generative AI</dd></div>
+        <div><dt>APIs and development</dt><dd>REST APIs, Python application development</dd></div>
+        <div><dt>Tools</dt><dd>Git, GitHub, Jupyter Notebook, VS Code, Streamlit</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="background" aria-labelledby="bg-h">
+    <header><span class="mono">Background</span><h2 id="bg-h">Experience and education</h2></header>
+    <div>
+      <h3 class="sub">Experience</h3>
+      <ul class="rows">
+        <li>
+          <span class="what">Artificial Intelligence Intern</span>
+          <time>Oct 2025 to Jun 2026</time>
+          <span class="where">Yantrikisoft Pvt. Ltd., remote</span>
+        </li>
+      </ul>
+
+      <h3 class="sub">Education</h3>
+      <ul class="rows">
+        <li>
+          <span class="what">B.E. Computer Engineering</span>
+          <time>2021 to 2026</time>
+          <span class="where">Genba Sopanrao Moze College of Engineering, Pune. CGPA 6.86 / 10</span>
+        </li>
+      </ul>
+
+      <h3 class="sub">Certifications</h3>
+      <ul class="rows" style="margin-bottom:0">
+        <li>
+          <span class="what">Python for Data Analysis</span>
+          <time>Aug 2026</time>
+        </li>
+        <li>
+          <span class="what">Data Analytics Job Simulation</span>
+          <time>Aug 2026</time>
+          <span class="where">Deloitte, via Forage</span>
+        </li>
+        <li>
+          <span class="what">Python Essentials 1</span>
+          <time>Jul 2026</time>
+          <span class="where">Cisco Networking Academy</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="contact" aria-labelledby="contact-h">
+    <header><span class="mono">Get in touch</span><h2 id="contact-h">Contact</h2></header>
+    <div>
+      <dl class="contact-list">
+        <div><dt>Email</dt><dd id="c-email">warudevarun@gmail.com</dd><button class="copy" type="button" data-target="c-email">Copy</button></div>
+        <div><dt>Phone</dt><dd id="c-phone">+91 9284295759</dd><button class="copy" type="button" data-target="c-phone">Copy</button></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/varun-warude-a71952359" target="_blank" rel="noopener">linkedin.com/in/varun-warude-a71952359</a></dd><span></span></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/varunwarude" target="_blank" rel="noopener">github.com/varunwarude</a></dd><span></span></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">Varun Warude</span>
+    <span class="mono">Pune, Maharashtra</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll('.chip');
+  var rows = document.querySelectorAll('.proj');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-filter');
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      rows.forEach(function (row) {
+        var tags = (row.getAttribute('data-tags') || '').split(' ');
+        row.hidden = !(f === 'all' || tags.indexOf(f) !== -1);
+      });
+    });
+  });
+
+  function selectText(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      var text = el.textContent.trim();
+      var done = function (label) {
+        btn.textContent = label;
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+      };
+      try {
+        navigator.clipboard.writeText(text).then(function () { done('Copied'); }, function () { selectText(el); done('Selected'); });
+      } catch (e) {
+        selectText(el);
+        done('Selected');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
